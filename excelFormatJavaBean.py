@@ -55,6 +55,7 @@ else:
         if types == 'C':
             data["types"] = 'VARCHAR2'
             data["lengths"] = int(math.floor(lengths))
+            data["mold"] = 'String'
         elif types == 'N':
             data["types"] = 'NUMBER'
             if isinstance(lengths, float):
@@ -62,13 +63,19 @@ else:
                     data["lengths"] = int(lengths)  # solving your problem and printing the integer
                 else:
                     data["lengths"] = lengths
+                data["mold"] = 'Integer'
             else:
                 data["lengths"] = lengths
+                data["mold"] = 'Double'
         contents.append(data)
     print(contents)
-    with open("E:\\formatExcel\\template\\template.json.j4", "r", encoding='UTF-8') as fd:
+    # with open("E:\\formatExcel\\template\\template.json.j4", "r", encoding='UTF-8') as fd:
+    # with open("E:\\formatExcel\\template\\template.json.j3", "r", encoding='UTF-8') as fd:
+    with open("E:\\formatExcel\\template\\template.json.j2", "r", encoding='UTF-8') as fd:
         template = Template(fd.read())
     config_content = template.render(contents=contents, name=name)
 
-    with open("E:\\formatExcel\\productFiles\\" + name + ".sql", "w") as fd:
+    # with open("E:\\formatExcel\\productFiles\\" + name + ".sql", "w") as fd:
+    # with open("E:\\formatExcel\\productFiles\\" + name + ".txt", "w") as fd:
+    with open("E:\\formatExcel\\productFiles\\" + name + ".java", "w") as fd:
         fd.write(config_content)
