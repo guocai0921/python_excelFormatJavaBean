@@ -1,0 +1,35 @@
+package com.sgai.message.cx.qm;
+
+import com.sgai.message.vo.AbstractL4NMessage;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("{{name}}")
+public class {{name}} extends AbstractL4NMessage {
+	private static final String messageTypeId = "{{name}}";
+
+    @Override
+    public String getMessageTypeId() {
+        return messageTypeId;
+    }
+	
+	{% for obj in contents %}
+	/**
+     * {{obj.content}}
+     */
+    @XStreamAlias("{{obj.name}}")
+	{%- if obj.annotation==0 %}
+	@BasePdi(parName = "{{obj.content}}")
+	{% endif -%}
+    private {{obj.mold}} {{obj.code}};
+	{% endfor %}
+	
+	{% for obj in contents %}
+	public {{obj.mold}} get{{obj.uname}}() {
+        return {{obj.code}};
+    }
+
+    public void set{{obj.uname}}({{obj.mold}} {{obj.code}}) {
+        this.{{obj.code}} = {{obj.code}};
+    }	
+	{% endfor %}
+}

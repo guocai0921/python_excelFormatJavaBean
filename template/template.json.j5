@@ -1,0 +1,6 @@
+
+	
+{% for obj in contents %}
+insert into PES_MQ_HANDLER_MAPPING (SID, CHANNEL_SID, ENTITY, HANDLER, WAIVED_FLAG, EVENT_SID, TARGET_APPLICATION, CREATED_BY, CREATED_DT, UPDATED_BY, UPDATED_DT, VERSION)
+values ({{obj.name}}, {{obj.content}}, '{{obj.types}}', 'com.sgai.message.command.EventProcessServiceInvocation', 0, {{obj.lengths}}, 'hot_rolling', 'sgc', to_date('23-08-2018', 'dd-mm-yyyy'), null, null, 1);
+{% endfor %}

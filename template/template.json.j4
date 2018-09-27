@@ -1,0 +1,41 @@
+create table PES_MAT_HOLD
+(
+  SID             NUMBER(15)   not null
+    primary key,
+  {% for obj in contents %}
+  {{obj.name}}   {{obj.types}}({{obj.lengths}}),
+  {% endfor %}
+  CREATED_BY      VARCHAR2(32),
+  CREATED_DT      DATE,
+  UPDATED_BY      VARCHAR2(32),
+  UPDATED_DT      DATE,
+  VERSION         NUMBER(9)
+
+)
+/
+comment on table PES_MAT_HOLD
+is '退火曲线'
+/
+comment on column PES_MAT_HOLD.SID
+  is '主键SID';
+/
+{% for obj in contents %}
+comment on column PES_MAT_HOLD.{{obj.name}}
+is '{{obj.content}}'
+/
+{% endfor %}
+comment on column PES_MAT_HOLD.CREATED_BY
+  is '创建人';
+/
+comment on column PES_MAT_HOLD.CREATED_DT
+  is '创建时间';
+/
+comment on column PES_MAT_HOLD.UPDATED_BY
+  is '更新人';
+/
+comment on column PES_MAT_HOLD.UPDATED_DT
+  is '更新时间';
+/
+comment on column PES_MAT_HOLD.VERSION
+  is '版本号';
+/

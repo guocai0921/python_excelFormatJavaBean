@@ -1,0 +1,5 @@
+
+	
+{% for obj in contents %}
+item.set{{obj.uname}}(entity.get{{obj.uname}}());	
+{% endfor %}
