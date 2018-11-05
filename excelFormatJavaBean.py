@@ -54,6 +54,7 @@ else:
             data["content"] = content
             code = convert(code, '_')
             data["code"] = code
+            data["type"] = types
             # data["annotation"] = int(math.floor(annotation))
             data["uname"] = formatToStr(code)
             if types == 'C':
@@ -71,11 +72,14 @@ else:
                 else:
                     data["lengths"] = lengths
                     data["mold"] = 'Double'
+            elif types == 'F':
+                data["mold"] = 'Double'
             contents.append(data)
         print(contents)
         # with open("E:\\formatExcel\\template\\template.json.j4", "r", encoding='UTF-8') as fd:
         # with open("E:\\formatExcel\\template\\template.json.j3", "r", encoding='UTF-8') as fd:
         with open("E:\\formatExcel\\template\\template.json.j1", "r", encoding='UTF-8') as fd:
+        # with open("E:\\formatExcel\\template\\template.json.j2", "r", encoding='UTF-8') as fd:
             template = Template(fd.read())
         config_content = template.render(contents=contents, name=name, fileName=fileName)
 
