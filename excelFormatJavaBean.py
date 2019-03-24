@@ -18,14 +18,14 @@ def convert(one_string, space_character):  # one_string:输入的字符串；spa
     return hump_string
 
 
-def formatToStr(str):  # 首字母大写
+def formatToStr(string):  # 首字母大写
 
     result = ''
-    for i in range(len(str)):
+    for i in range(len(string)):
         if i == 0:
-            result += str[0].upper()
+            result += string[0].upper()
         else:
-            result += str[i]
+            result += string[i]
     return result
 
 
